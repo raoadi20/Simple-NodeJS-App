@@ -1,4 +1,4 @@
-# simple-nodejs-web-app
+# Simple-Nodejs-Web-App
 ## Overview
 
 * Very simple Node.js web application
@@ -11,12 +11,6 @@
 * User interface is somewhat rough but will be improved.
 
 * Current security level is low but will be improved.
-
-## References
-
-* [Openturorials Node.js courses for beginners](https://opentutorials.org/course/3332)
-* [Official Node.js API documentation](https://nodejs.org/en/docs/)
-
   
 
   
