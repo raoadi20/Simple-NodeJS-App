@@ -22,7 +22,7 @@ pipeline {
                     // SonarQube analysis
                     def scannerHome = tool 'SonarQube Scanner' // Use the name you configured
                     withSonarQubeEnv('SonarQube') { // Use the name of your SonarQube server configuration
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=<your-project-key> -Dsonar.sources=./src"
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Nodejs-App-Analysis -Dsonar.sources=./src"
                     }
                 }
             }
