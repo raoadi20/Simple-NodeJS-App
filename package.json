@@ -4,16 +4,17 @@
   "description": "Very simple Node.js web application",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mwjjeong/simple-nodejs-web-app.git"
+    "url": "git+https://github.com/raoadi20/Simple-NodeJS-App.git"
   },
-  "author": "Minwoo Jeong",
+  "author": "Adnan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mwjjeong/simple-nodejs-web-app/issues"
+    "url": "https://github.com/raoadi20/Simple-NodeJS-App/issues"
   },
-  "homepage": "https://github.com/mwjjeong/simple-nodejs-web-app#readme"
+  "homepage": "https://github.com/raoadi20/Simple-NodeJS-App#readme"
 }
