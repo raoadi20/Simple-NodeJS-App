@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Checkout the code from GitHub
-                git branch: 'main', url: 'https://github.com/raoadi20/jenkins-kubernetes-deployment.git'
+                git branch: 'main', url: 'https://github.com/raoadi20/Simple-NodeJS-App.git'
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
                     // Stop any existing container
                     sh 'docker ps -a --format "{{.Names}}" | grep nodejs-staging || true && docker stop nodejs-staging || true && docker rm nodejs-staging || true'
                     // Run the Docker container in detached mode on the development server
-                    sh 'docker run -d --name nodejs-staging -p 3000:3000 nodejs-app'
+                    sh 'docker run -d --name nodejs-staging -p 8000:8000 nodejs-app'
                     
                     // Push the Docker image to Docker Hub
                     sh 'docker tag nodejs-app raoadi20/nodejs-app' // Tagging the image
@@ -75,7 +75,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no prosecops@172.16.5.131 '
                     docker ps -a --format "{{.Names}}" | grep nodejs-prod || true && sudo docker stop nodejs-prod || true && sudo docker rm nodejs-prod || true
                     docker pull raoadi20/nodejs-app
-                    docker run -d --name nodejs-prod -p 3000:3000 raoadi20/nodejs-app
+                    docker run -d --name nodejs-prod -p 8000:8000 raoadi20/nodejs-app
                     '
                     """
                 }
