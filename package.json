@@ -1,0 +1,19 @@
+{
+  "name": "simple-nodejs-web-app",
+  "version": "1.0.0",
+  "description": "Very simple Node.js web application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwjjeong/simple-nodejs-web-app.git"
+  },
+  "author": "Minwoo Jeong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwjjeong/simple-nodejs-web-app/issues"
+  },
+  "homepage": "https://github.com/mwjjeong/simple-nodejs-web-app#readme"
+}
