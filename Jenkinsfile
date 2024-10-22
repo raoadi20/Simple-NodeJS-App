@@ -17,9 +17,14 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarScanner';
-            withSonarQubeEnv() {
-            sh "${scannerHome}/bin/sonar-scanner"
+            steps {
+                script {
+                    // SonarQube analysis
+                    def scannerHome = tool 'SonarQube Scanner' // Use the name you configured
+                    withSonarQubeEnv('SonarQube') { // Use the name of your SonarQube server configuration
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=<your-project-key> -Dsonar.sources=./src"
+                    }
+                }
             }
         }
         
