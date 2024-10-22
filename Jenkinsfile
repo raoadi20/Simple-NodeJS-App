@@ -17,16 +17,18 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    // SonarQube analysis
-                    def scannerHome = tool 'SonarQube Scanner' // Use the name you configured
-                    withSonarQubeEnv('SonarQube') { // Use the name of your SonarQube server configuration
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Nodejs-App-Analysis -Dsonar.sources=./src"
-                    }
-                }
+    steps {
+        script {
+            // Define the SonarQube Scanner
+            def scannerHome = tool 'SonarQube Scanner' // Name should match the one you configured in Jenkins
+
+            // Run SonarQube analysis
+            withSonarQubeEnv('SonarQube') { // Replace 'SonarQube' with the name of your SonarQube server configuration
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Nodejs-App-Analysis -Dsonar.sources=./src -Dsonar.host.url=http://172.16.5.118:9000/ -Dsonar.login=sqp_3309523d16b8aedb3593940401e8af0f0ea89a71"
             }
         }
+    }
+}
         
         stage('Unit Test') {
             steps {
