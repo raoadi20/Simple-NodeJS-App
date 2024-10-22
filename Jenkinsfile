@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t nodejs-app .'
+                    sh 'docker build -t nodejs-todo-app .'
                 }
             }
         }
@@ -47,11 +47,11 @@ pipeline {
                     // Stop any existing container
                     sh 'docker ps -a --format "{{.Names}}" | grep nodejs-staging || true && docker stop nodejs-staging || true && docker rm nodejs-staging || true'
                     // Run the Docker container in detached mode on the development server
-                    sh 'docker run -d --name nodejs-staging -p 8000:8000 nodejs-app'
+                    sh 'docker run -d --name nodejs-staging -p 8000:8000 nodejs-todo-app'
                     
                     // Push the Docker image to Docker Hub
-                    sh 'docker tag nodejs-app raoadi20/nodejs-app' // Tagging the image
-                    sh 'docker push raoadi20/nodejs-app'           // Pushing the image to Docker Hub
+                    sh 'docker tag nodejs-app raoadi20/nodejs-todo-app' // Tagging the image
+                    sh 'docker push raoadi20/nodejs-todo-app'           // Pushing the image to Docker Hub
                 }
             }
         }
@@ -74,8 +74,8 @@ pipeline {
                     sh """
                     ssh -o StrictHostKeyChecking=no prosecops@172.16.5.131 '
                     docker ps -a --format "{{.Names}}" | grep nodejs-prod || true && sudo docker stop nodejs-prod || true && sudo docker rm nodejs-prod || true
-                    docker pull raoadi20/nodejs-app
-                    docker run -d --name nodejs-prod -p 8000:8000 raoadi20/nodejs-app
+                    docker pull raoadi20/nodejs-todo-app
+                    docker run -d --name nodejs-prod -p 8000:8000 raoadi20/nodejs-todo-app
                     '
                     """
                 }
