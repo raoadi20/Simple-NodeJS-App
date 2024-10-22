@@ -50,7 +50,7 @@ pipeline {
                     sh 'docker run -d --name nodejs-staging -p 8000:8000 nodejs-todo-app'
                     
                     // Push the Docker image to Docker Hub
-                    sh 'docker tag nodejs-app raoadi20/nodejs-todo-app' // Tagging the image
+                    sh 'docker tag nodejs-todo-app raoadi20/nodejs-todo-app' // Tagging the image
                     sh 'docker push raoadi20/nodejs-todo-app'           // Pushing the image to Docker Hub
                 }
             }
