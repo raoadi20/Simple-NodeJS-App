@@ -15,19 +15,6 @@ pipeline {
                 sh 'npm install'
             }
         }
-
-        stage('SonarQube Analysis') {
-            environment {
-                SCANNER_HOME = tool 'SonarQube';    
-            }
-            
-            steps {
-                
-                withSonarQubeEnv('SonarQube') {
-                    sh "/opt/sonarqube/bin"
-                }
-            }
-        }
         
         stage('Unit Test') {
             steps {
