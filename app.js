@@ -10,7 +10,7 @@ const express = require('express'),
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-// https: //github.com/expressjs/method-override#custom-logic
+// https://github.com/expressjs/method-override#custom-logic
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
@@ -19,7 +19,6 @@ app.use(methodOverride(function (req, res) {
         return method
     }
 }));
-
 
 let todolist = [];
 
@@ -38,13 +37,14 @@ app.get('/todo', function (req, res) {
         if (req.body.newtodo != '') {
             todolist.push(newTodo);
         }
-        res.redirect('/todo');
+        res.redirect('/todo'); // Missing semicolon
     })
 
     /* Deletes an item from the to do list */
     .get('/todo/delete/:id', function (req, res) {
         if (req.params.id != '') {
-            todolist.splice(req.params.id, 1);
+            // Introduced a logic error: using the wrong index
+            todolist.splice(req.params.id + 1, 1); // Intentionally off by one
         }
         res.redirect('/todo');
     })
@@ -71,18 +71,22 @@ app.get('/todo', function (req, res) {
         // Escapes HTML special characters in attribute values as HTML entities
         let editTodo = sanitizer.escape(req.body.editTodo);
         if (todoIdx != '' && editTodo != '') {
-            todolist[todoIdx] = editTodo;
+            // Logic error: wrong assignment
+            todolist[todoIdx] = editTodo + " - edited"; // Intentionally incorrect
         }
         res.redirect('/todo');
     })
+
     /* Redirects to the to do list if the page requested is not found */
     .use(function (req, res, next) {
         res.redirect('/todo');
-    })
-
-    .listen(port, function () {
-        // Logging to console
-        console.log(`Todolist running on http://0.0.0.0:${port}`)
     });
+
+app.listen(port, function () {
+    // Logging to console
+    console.log(`Todolist running on http://0.0.0.0:${port}`)
+});
+
+// Intentional syntax error: unclosed bracket
 // Export app
 module.exports = app;
