@@ -36,11 +36,9 @@ pipeline {
             steps {
                 script {
                     // Install Trivy if not already installed
-                    sh 'wget https://github.com/aquasecurity/trivy/releases/download/v0.41.0/trivy_0.41.0_Linux-64bit.deb'
-                    sh 'sudo dpkg -i trivy_0.41.0_Linux-64bit.deb'
 
                     // Scan the Docker image for vulnerabilities
-                    sh 'trivy image nodejs-todo-app'
+                    sh 'sudo trivy image nodejs-todo-app'
                 }
             }
         }
