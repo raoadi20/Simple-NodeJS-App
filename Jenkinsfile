@@ -66,31 +66,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Manual Approval') {
-            steps {
-                script {
-                    // Wait for admin approval before deploying to production
-                    input message: 'Approve deployment to production?', 
-                          ok: 'Deploy', 
-                          submitter: 'admin' // The user who needs to approve, you can also leave it for any user
-                }
-            }
-        }
-        
-        stage('Deploy to Production Server') {
-            steps {
-                // Deploy to production server using SSH
-                sshagent(['prod-ssh-key']) {
-                    sh """
-                    ssh -o StrictHostKeyChecking=no prosecops@172.16.5.131 '
-                    docker ps -a --format "{{.Names}}" | grep nodejs-prod || true && sudo docker stop nodejs-prod || true && sudo docker rm nodejs-prod || true
-                    docker pull raoadi20/nodejs-todo-app
-                    docker run -d --name nodejs-prod -p 8000:8000 raoadi20/nodejs-todo-app
-                    '
-                    """
-                }
-            }
-        }
     }
 }
