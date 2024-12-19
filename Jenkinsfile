@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Checkout the code from GitHub
-                git branch: 'main', url: 'https://github.com/raoadi20/Simple-NodeJS-App.git'
+                git branch: 'dev', url: 'https://github.com/raoadi20/Simple-NodeJS-App.git'
             }
         }
 
