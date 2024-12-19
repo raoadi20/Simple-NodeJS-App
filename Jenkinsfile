@@ -46,7 +46,7 @@ pipeline {
                     // Install Trivy if not already installed
 
                     // Scan the Docker image for vulnerabilities
-                    sh 'sudo --askpass trivy image nodejs-todo-app'
+                    sh 'sudo TRIVY_ASKPASS=/usr/local/bin/askpass trivy image nodejs-todo-app'
                 }
             }
         }
