@@ -46,7 +46,7 @@ pipeline {
                     // Install Trivy if not already installed
 
                     // Scan the Docker image for vulnerabilities
-                    sh 'sudo -S trivy image nodejs-todo-app'
+                    sh 'trivy image nodejs-todo-app'
                 }
             }
         }
