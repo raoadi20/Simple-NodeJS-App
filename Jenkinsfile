@@ -9,6 +9,14 @@ pipeline {
             }
         }
 
+    stage('Debug Environment') {
+        steps {
+            sh 'echo $PATH'
+            sh 'which node || echo "Node.js not found"'
+            sh 'which npm || echo "npm not found"'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 // Install dependencies using npm
