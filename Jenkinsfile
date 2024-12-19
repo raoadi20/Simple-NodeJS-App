@@ -1,17 +1,17 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS_20.18.0' // Name of the NodeJS installation in Jenkins
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
                 // Checkout the code from GitHub
                 git branch: 'dev', url: 'https://github.com/raoadi20/Simple-NodeJS-App.git'
             }
-        }
-
-    tools {
-        nodejs 'NodeJS_20.18.0' // Name of the NodeJS installation in Jenkins
-    }    
+        }    
 
     stage('Debug Environment') {
         steps {
