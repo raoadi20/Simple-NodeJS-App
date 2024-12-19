@@ -9,6 +9,10 @@ pipeline {
             }
         }
 
+    tools {
+        nodejs 'NodeJS_20.18.0' // Name of the NodeJS installation in Jenkins
+    }    
+
     stage('Debug Environment') {
         steps {
             sh 'echo $PATH'
