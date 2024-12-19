@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS_20' // Name of the NodeJS installation in Jenkins
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
