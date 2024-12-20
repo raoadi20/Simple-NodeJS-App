@@ -30,7 +30,7 @@ pipeline {
         
         stage('Run Tests and Generate Coverage') {
             steps {
-                sh 'npm test'
+                sh 'npx jest --coverage'
             }
         }
 
