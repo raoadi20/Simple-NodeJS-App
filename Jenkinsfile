@@ -39,8 +39,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarserver') { // Replace 'My SonarQube' with your configured SonarQube server name
-                    //sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
-                    sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/lcov.info"
+                    sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                    //sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/lcov.info"
                 }
             }
         }
@@ -54,6 +54,7 @@ pipeline {
                         echo "Image nodejs-todo-app found. Removing it..."
                         docker ps -a --format "{{.Names}}" | grep nodejs-staging || true && docker stop nodejs-staging || true && docker rm nodejs-staging || true
                         docker rmi -f nodejs-todo-app
+                        docker rmi -f raoadi20/nodejs-todo-app
                     else
                         echo "Image nodejs-todo-app not found. Proceeding to build..."
                     fi
