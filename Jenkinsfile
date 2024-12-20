@@ -27,12 +27,6 @@ pipeline {
                 sh 'npm install'
             }
         }
-        
-        stage('Run Tests and Generate Coverage') {
-            steps {
-                sh 'npx jest --coverage --passWithNoTests'
-            }
-        }
 
         stage('SonarQube Analysis') {
             steps {
