@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SONAR_SCANNER_HOME = tool 'SonarQube Scanner' // Replace with your SonarQube Scanner tool name
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -24,9 +28,8 @@ pipeline {
             }
         }
         
-        stage('Unit Test') {
+        stage('Run Tests and Generate Coverage') {
             steps {
-                // Run unit tests using npm
                 sh 'npm test'
             }
         }
@@ -34,7 +37,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('My SonarQube') {
-                    sh 'sonar-scanner'
+                    sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
                 }
             }
         }
