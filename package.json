@@ -13,6 +13,9 @@
     "test": "mocha --recursive --exit",
     "sonar": "sonar-scanner"
   },
+  "scripts": {
+    "test": "jest --coverage"
+  },
   "author": "riaan@entersekt.com",
   "description": "Basic to do list exercise",
   "devDependencies": {
