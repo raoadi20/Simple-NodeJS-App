@@ -28,10 +28,19 @@ pipeline {
             }
         }
 
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'npm test'
+                }
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarserver') { // Replace 'My SonarQube' with your configured SonarQube server name
                     sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                    sh 'sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/lcov.info'
                 }
             }
         }
