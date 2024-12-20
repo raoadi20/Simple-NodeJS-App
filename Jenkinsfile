@@ -39,7 +39,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarserver') { // Replace 'My SonarQube' with your configured SonarQube server name
-                    sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                    //sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
                     sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/lcov.info"
                 }
             }
