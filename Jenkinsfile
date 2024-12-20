@@ -39,8 +39,17 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image
-                    sh 'docker build -t nodejs-todo-app .'
+                // Check if the Docker image exists, remove it if it does, and then build a new one
+                    sh '''
+                    if docker images | grep -q nodejs-todo-app; then
+                        echo "Image nodejs-todo-app found. Removing it..."
+                        docker ps -a --format "{{.Names}}" | grep nodejs-staging || true && docker stop nodejs-staging || true && docker rm nodejs-staging || true
+                        docker rmi -f nodejs-todo-app
+                    else
+                        echo "Image nodejs-todo-app not found. Proceeding to build..."
+                    fi
+                    docker build -t nodejs-todo-app .
+                    '''
                 }
             }
         }
